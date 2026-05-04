@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block title %}Home - Fractal Web App{% endblock %}
+
+{% block content %}
+<section class="hero hero-grid">
+    <div class="hero-text">
+        <span class="section-tag">Home</span>
+        <h2>Frattali: strutture geometriche tra matematica, natura e arte</h2>
+        <p>
+            I frattali sono figure geometriche ottenute attraverso procedimenti iterativi e caratterizzate
+            da autosimilarità, cioè dalla presenza della stessa struttura su scale diverse.
+            Questo significa che una parte della figura richiama la forma dell’intero.
+        </p>
+        <p>
+            I frattali compaiono sia in ambito matematico sia in fenomeni naturali:
+            ramificazioni degli alberi, coste, felci, fiocchi di neve, sistemi di crescita e modelli digitali.
+            Per questo rappresentano un punto di incontro tra rigore matematico, osservazione scientifica
+            e rappresentazione visiva.
+        </p>
+
+        <div class="hero-actions">
+            <a class="btn" href="{{ url_for('frattale') }}">Scopri il frattale del gruppo</a>
+            <a class="btn btn-secondary" href="{{ url_for('generatore') }}">Vai al generatore</a>
+        </div>
+    </div>
+
+    <div class="hero-panel">
+        <div class="mini-card">
+            <h3>Concetti chiave</h3>
+            <ul>
+                <li>iterazione</li>
+                <li>autosimilarità</li>
+                <li>geometria frattale</li>
+                <li>rappresentazione grafica</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<section class="info-grid">
+    <article class="card">
+        <h3>Che cosa mostra questa web app</h3>
+        <p>
+            Il sito presenta una panoramica generale sui frattali, approfondisce il Triangolo di Sierpinski
+            e permette di generare immagini frattali in modo interattivo tramite un backend Python.
+        </p>
+    </article>
+
+    <article class="card">
+        <h3>Obiettivo del progetto</h3>
+        <p>
+            Collegare teoria matematica e sviluppo web: l’utente può modificare i parametri,
+            inviare i dati al server e ottenere un’immagine generata automaticamente.
+        </p>
+    </article>
+
+    <article class="card">
+        <h3>Funzioni principali</h3>
+        <p>
+            Pagina teorica, spiegazione del frattale del gruppo, generazione personalizzata,
+            salvataggio PNG e archivio scaricabile.
+        </p>
+    </article>
+</section>
+{% endblock %}

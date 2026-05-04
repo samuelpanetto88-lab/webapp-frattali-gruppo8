@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block title %}Triangolo di Sierpinski - Fractal Web App{% endblock %}
+
+{% block content %}
+<section class="hero small-hero">
+    <span class="section-tag">Frattale del gruppo</span>
+    <h2>Il Triangolo di Sierpinski</h2>
+    <p>
+        Il Triangolo di Sierpinski è uno dei frattali più noti e rappresentativi.
+        Si ottiene applicando ripetutamente una regola semplice, ma il risultato finale
+        mostra una struttura complessa e autosimilare.
+    </p>
+</section>
+
+<section class="info-grid">
+    <article class="card">
+        <h3>Idea geometrica</h3>
+        <p>
+            Si parte da un triangolo e, attraverso iterazioni successive, si costruisce una figura
+            in cui compaiono vuoti e sotto-triangoli che ripetono la stessa forma del triangolo iniziale.
+        </p>
+    </article>
+
+    <article class="card">
+        <h3>Metodo usato</h3>
+        <p>
+            In questa applicazione viene usato il Chaos Game: si sceglie un vertice in modo casuale
+            e si sposta il punto corrente verso quel vertice secondo un rapporto di distanza r.
+        </p>
+    </article>
+
+    <article class="card">
+        <h3>Perché è un frattale</h3>
+        <p>
+            Il Triangolo di Sierpinski mostra autosimilarità: le sue parti conservano la stessa struttura
+            del disegno complessivo, anche osservandolo a scale diverse.
+        </p>
+    </article>
+</section>
+
+<section class="card">
+    <h3>Formula del procedimento</h3>
+    <p>
+        A ogni iterazione, scelto un vertice del triangolo, il nuovo punto viene calcolato con la formula:
+    </p>
+
+    <p class="formula">
+        P<sub>n+1</sub> = (1 - r) · P<sub>n</sub> + r · V
+    </p>
+
+    <p>
+        Dove <strong>P<sub>n</sub></strong> è il punto corrente,
+        <strong>V</strong> è il vertice scelto e
+        <strong>r</strong> è il rapporto di distanza.
+    </p>
+
+    <p>
+        Ripetendo molte volte questa operazione, i punti si dispongono secondo una figura frattale.
+        Nel caso classico del Triangolo di Sierpinski, il valore più noto è <strong>r = 0.5</strong>.
+    </p>
+</section>
+{% endblock %}

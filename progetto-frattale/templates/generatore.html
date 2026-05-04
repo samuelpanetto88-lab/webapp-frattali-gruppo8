@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+
+{% block title %}Il mio frattale - Fractal Web App{% endblock %}
+
+{% block content %}
+<section class="hero small-hero">
+    <span class="section-tag">Generazione interattiva</span>
+    <h2>Il mio frattale</h2>
+    <p>
+        In questa sezione puoi generare un frattale personalizzato scegliendo il numero di vertici,
+        il rapporto di distanza, il numero di iterazioni e il colore dei punti.
+    </p>
+</section>
+
+<section class="grid-two">
+    <section class="card">
+        <h3>Impostazioni del frattale</h3>
+
+        <form method="POST" class="form-box">
+            <div class="field-block">
+                <label for="num_vertici">Numero di vertici</label>
+                <p class="field-hint">Minimo: 3 · Massimo: 12</p>
+                <input
+                    type="number"
+                    id="num_vertici"
+                    name="num_vertici"
+                    min="3"
+                    max="12"
+                    value="5"
+                    required
+                >
+            </div>
+
+            <div class="field-block">
+                <label for="distanza">Rapporto di distanza r</label>
+                <p class="field-hint">Minimo: 0.10 · Massimo: 0.90</p>
+                <input
+                    type="number"
+                    id="distanza"
+                    name="distanza"
+                    step="0.01"
+                    min="0.10"
+                    max="0.90"
+                    value="0.50"
+                    required
+                >
+            </div>
+
+            <div class="field-block">
+                <label for="iterazioni">Numero di iterazioni</label>
+                <p class="field-hint">Minimo: 1000 · Massimo: 200000</p>
+                <input
+                    type="number"
+                    id="iterazioni"
+                    name="iterazioni"
+                    min="1000"
+                    max="200000"
+                    step="1000"
+                    value="30000"
+                    required
+                >
+            </div>
+
+            <div class="field-block">
+                <label for="colore">Colore del frattale</label>
+                <p class="field-hint">Scegli il colore dei punti del frattale</p>
+                <select id="colore" name="colore">
+                    <option value="green">Verde</option>
+                    <option value="blue">Blu</option>
+                    <option value="red">Rosso</option>
+                    <option value="purple">Viola</option>
+                    <option value="orange">Arancione</option>
+                    <option value="black">Nero</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn">Genera immagine</button>
+        </form>
+
+        <div class="note">
+            <p><strong>Esempi consigliati:</strong></p>
+            <ul>
+                <li>3 vertici → r = 0.50</li>
+                <li>5 vertici → r = 0.33</li>
+                <li>6 vertici → r = 0.33</li>
+                <li>8 vertici → prova valori tra 0.30 e 0.45</li>
+            </ul>
+        </div>
+
+        {% if errore %}
+            <div class="error-box">
+                {{ errore }}
+            </div>
+        {% endif %}
+    </section>
+
+    <section class="card">
+        <h3>Anteprima generata</h3>
+
+        {% if immagine %}
+            <img class="preview-image" src="{{ url_for('static', filename=immagine) }}" alt="Frattale generato">
+            <a class="btn" href="{{ url_for('static', filename=immagine) }}" download>Scarica PNG</a>
+        {% else %}
+            <p>Nessuna immagine generata al momento. Inserisci i parametri e crea il tuo frattale.</p>
+        {% endif %}
+    </section>
+</section>
+{% endblock %}

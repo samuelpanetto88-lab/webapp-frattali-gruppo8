@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}Archivio - Fractal Web App{% endblock %}
+
+{% block content %}
+<section class="hero small-hero">
+    <span class="section-tag">Archivio</span>
+    <h2>Immagini generate</h2>
+    <p>
+        In questa sezione sono raccolti i frattali creati con il generatore.
+        Ogni immagine può essere visualizzata e scaricata in formato PNG.
+    </p>
+</section>
+
+<section class="card">
+    {% if immagini %}
+        <div class="gallery">
+            {% for immagine in immagini %}
+                <article class="gallery-card">
+                    <img src="{{ url_for('static', filename=immagine) }}" alt="Frattale salvato">
+                    <div class="gallery-actions">
+                        <a class="btn small-btn" href="{{ url_for('static', filename=immagine) }}" download>Scarica PNG</a>
+                    </div>
+                </article>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>Nessuna immagine presente nell’archivio.</p>
+    {% endif %}
+</section>
+{% endblock %}
