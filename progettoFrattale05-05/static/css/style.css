@@ -5,7 +5,7 @@ body{
     min-height:100vh;
     display:flex;
     flex-direction:column;
-    background:#0e0b1a;
+    background:red;
     color:white;
 }
 
@@ -304,4 +304,21 @@ footer{
     }
 
     .titolo-grande{font-size:40px}
+}
+
+.barra-mode {
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 0px solid mediumslateblue;
+  color: white;
+  background: transparent;
+}
+
+#barra-mode-option {
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 0px solid mediumslateblue;
+  background: black;
 }

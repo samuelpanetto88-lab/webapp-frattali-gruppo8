@@ -4,7 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Frattali{% endblock %}</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    {% if web_mode == "dark" %}
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style_night.css') }}">
+    {% else %}
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    {% endif %}
 </head>
 <body>
 
@@ -13,6 +17,14 @@
     <a href="{{ url_for('frattale') }}">SIERPINSKI</a>
     <a href="{{ url_for('generatore') }}">GENERATORE</a>
     <a href="{{ url_for('archivio') }}">ARCHIVIO</a>
+
+    
+    <form method="POST">
+        <select class="barra-mode" name="mode" onchange="this.form.submit()">
+            <option id="barra-mode-option" value="light">🔆</option>
+            <option id="barra-mode-option" value="dark" {% if web_mode == "dark" %}selected{% endif %}>🌙</option>
+        </select>
+    </form>
 </nav>
 
 {% block content %}{% endblock %}

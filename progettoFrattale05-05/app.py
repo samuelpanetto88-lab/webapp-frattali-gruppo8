@@ -5,20 +5,39 @@ import os
 app = Flask(__name__)
 
 
-@app.route("/")
+# Uso una variabile globale per gestire light e dark mode del sito web
+web_mode = None
+def update_web_mode(request):
+    # Recupero la variabile globale web_mode
+    global web_mode
+    # Controllo che sia stata effettuata una operazione di tipo POST
+    if request.method  == "POST":
+        # Controllo che il parametro mode sia stato inizializzato correttamente
+        if request.form.get("mode") != None:
+            # Assegno la nuova mode alla variabile globale
+            web_mode = request.form.get("mode")
+
+
+@app.route("/", methods=["GET", "POST"])
 def home():
-    return render_template("index.html")
+    update_web_mode(request=request)
+
+    return render_template("index.html", web_mode=web_mode)
 
 
-@app.route("/frattale")
+@app.route("/frattale", methods=["GET", "POST"])
 def frattale():
-    return render_template("frattale.html")
+    update_web_mode(request=request)
+
+    return render_template("frattale.html", web_mode=web_mode)
 
 
 @app.route("/generatore", methods=["GET", "POST"])
 def generatore():
     immagine = None
     errore = None
+
+    update_web_mode(request=request)
 
     if request.method == "POST":
         try:
@@ -40,18 +59,20 @@ def generatore():
         except Exception as e:
             errore = str(e)
 
-    return render_template("generatore.html", immagine=immagine, errore=errore)
+    return render_template("generatore.html", immagine=immagine, errore=errore, web_mode=web_mode)
 
 
-@app.route("/archivio")
+@app.route("/archivio", methods=["GET", "POST"])
 def archivio():
+    update_web_mode(request=request)
+
     cartella = os.path.join("static", "generated")
     os.makedirs(cartella, exist_ok=True)
 
     files = sorted(os.listdir(cartella), reverse=True)
     immagini = [f"generated/{file}" for file in files if file.lower().endswith(".png")]
 
-    return render_template("archivio.html", immagini=immagini)
+    return render_template("archivio.html", immagini=immagini, web_mode=web_mode)
 
 
 if __name__ == "__main__":
