@@ -1,9 +1,7 @@
-import os
 import random
-import uuid
 import numpy as np
 import matplotlib
-matplotlib.use("Agg")
+matplotlib.use("Agg")           # usato per generare immagini senza la pagina grafica, necessario per la web app 
 import matplotlib.pyplot as plt
 
 
@@ -33,14 +31,28 @@ def genera_frattale(num_vertici=3, distanza=0.5, iterazioni=30000,
     if iterazioni < 1000 or iterazioni > 200000:
         raise ValueError("Il numero di iterazioni deve essere compreso tra 1000 e 200000.")
 
-    os.makedirs(cartella_output, exist_ok=True)
+    # genera la cartella per le immagini se non esiste già
+    try:
+        import os
+        os.makedirs(cartella_output, exist_ok=True)
+    except:
+        pass  
 
     vertici = genera_vertici(num_vertici)
     punto_corrente = np.array([0.0, 0.0])
     punti = []
+    indice_precedente = None
 
     for i in range(iterazioni):
-        vertice_casuale = random.choice(vertici)
+        if num_vertici > 3 and indice_precedente is not None:
+            indice = random.randrange(len(vertici))
+            if indice == indice_precedente:
+                indice = random.choice([j for j in range(len(vertici)) if j != indice_precedente])
+        else:
+            indice = random.randrange(len(vertici))
+
+        indice_precedente = indice
+        vertice_casuale = vertici[indice]
         punto_corrente = (1 - distanza) * punto_corrente + distanza * vertice_casuale
 
         if i >= scarta:
@@ -48,8 +60,11 @@ def genera_frattale(num_vertici=3, distanza=0.5, iterazioni=30000,
 
     punti = np.array(punti)
 
-    nome_file = f"frattale_{num_vertici}v_{uuid.uuid4().hex[:8]}.png"
-    percorso_file = os.path.join(cartella_output, nome_file)
+    #genera il nome dell immagine con un suffisso random per evitare nomi uguali dei file e quindi overewriting 
+
+    random_suffix = ''.join(random.choices('0123456789abcdef', k=8))
+    nome_file = f"frattale_{num_vertici}v_{random_suffix}.png"
+    percorso_file = f"{cartella_output}/{nome_file}"
 
     plt.figure(figsize=(8, 8))
     plt.scatter(punti[:, 0], punti[:, 1], s=0.2, c=colore, alpha=0.8)
@@ -59,4 +74,4 @@ def genera_frattale(num_vertici=3, distanza=0.5, iterazioni=30000,
     plt.savefig(percorso_file, dpi=300, bbox_inches="tight", pad_inches=0.1)
     plt.close()
 
-    return nome_file
+    return nome_file        
