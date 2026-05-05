@@ -1,9 +1,12 @@
+/* STILI BASE */
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* Stile base corpo pagina */
 body {
     font-family: Arial, sans-serif;
     background:
@@ -15,16 +18,20 @@ body {
     min-height: 100vh;
 }
 
+/* Contenitore principale che limita la larghezza massima */
 .container {
     width: 90%;
     max-width: 1180px;
     margin: 0 auto;
 }
 
+/* Padding inferiore per il contenuto della pagina */
 .page-content {
     padding-bottom: 40px;
 }
 
+/* header e navigazione */
+/* Header sticky con effetto blur */
 .site-header {
     position: sticky;
     top: 0;
@@ -35,6 +42,7 @@ body {
     margin-bottom: 34px;
 }
 
+/* Layout flex per il wrapper della navigazione */
 .nav-wrap {
     display: flex;
     justify-content: space-between;
@@ -43,6 +51,7 @@ body {
     min-height: 88px;
 }
 
+/* Stile del brand/logo */
 .brand {
     display: flex;
     align-items: center;
@@ -51,6 +60,7 @@ body {
     color: #f8fafc;
 }
 
+/* Badge circolare del brand con gradiente */
 .brand-badge {
     width: 48px;
     height: 48px;
@@ -65,17 +75,20 @@ body {
     box-shadow: 0 10px 30px rgba(56, 189, 248, 0.18);
 }
 
+/* Testo del logo principale */
 .logo {
     font-size: 1.35rem;
     color: #f8fafc;
     margin: 0;
 }
 
+/* Sottotitolo del logo */
 .logo-subtitle {
     font-size: 0.88rem;
     color: #94a3b8;
 }
 
+/* Lista dei link di navigazione */
 .nav-links {
     display: flex;
     align-items: center;
@@ -83,6 +96,7 @@ body {
     gap: 10px;
 }
 
+/* Stile dei link di navigazione */
 .nav-links a {
     color: #cbd5e1;
     text-decoration: none;
@@ -92,11 +106,14 @@ body {
     transition: 0.25s ease;
 }
 
+/* Effetto hover dei link di navigazione */
 .nav-links a:hover {
     background: rgba(56, 189, 248, 0.12);
     color: #ffffff;
 }
 
+/* SEZIONI HERO E CONTENUTO PRINCIPALE */
+/* Sezioni hero con padding e stile base */
 .hero,
 .card {
     background: rgba(15, 23, 42, 0.72);
@@ -107,6 +124,8 @@ body {
     margin-bottom: 24px;
 }
 
+/* LAYOUT E GRIGLIE */
+/* Griglia hero con due colonne */
 .hero-grid {
     display: grid;
     grid-template-columns: 1.4fr 0.8fr;
@@ -114,10 +133,13 @@ body {
     align-items: stretch;
 }
 
+/* Hero più piccolo per pagine interne */
 .small-hero {
     padding: 28px;
 }
 
+/* TIPOGRAFIA E COLORI */
+/* Titoli delle sezioni hero e card */
 .hero h2,
 .card h2,
 .card h3 {
@@ -125,12 +147,14 @@ body {
     margin-bottom: 14px;
 }
 
+/* Titolo principale hero */
 .hero h2 {
     font-size: 2.2rem;
     line-height: 1.15;
     max-width: 760px;
 }
 
+/* Testo normale in hero e card */
 .hero p,
 .card p,
 .card li {
@@ -138,6 +162,7 @@ body {
     margin-bottom: 12px;
 }
 
+/* Tag di sezione con stile badge */
 .section-tag {
     display: inline-block;
     margin-bottom: 14px;
@@ -151,6 +176,8 @@ body {
     letter-spacing: 0.02em;
 }
 
+/* COMPONENTI E AZIONI */
+/* Container per i pulsanti nelle sezioni hero */
 .hero-actions {
     display: flex;
     gap: 12px;
@@ -158,6 +185,7 @@ body {
     margin-top: 20px;
 }
 
+/* Card piccole per informazioni */
 .mini-card {
     height: 100%;
     border-radius: 18px;
@@ -177,12 +205,16 @@ body {
     padding-left: 18px;
 }
 
+/* Griglia a tre colonne per informazioni */
 .info-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 22px;
 }
 
+/* PULSANTI */
+
+/* Stile base dei pulsanti */
 .btn {
     display: inline-flex;
     align-items: center;
@@ -198,39 +230,48 @@ body {
     transition: transform 0.2s ease, opacity 0.2s ease;
 }
 
+/* Effetto hover dei pulsanti */
 .btn:hover {
     transform: translateY(-1px);
     opacity: 0.95;
 }
 
+/* Variante secondaria dei pulsanti */
 .btn-secondary {
     background: transparent;
     color: #e2e8f0;
     border: 1px solid rgba(148, 163, 184, 0.22);
 }
 
+/* Pulsanti più piccoli */
 .small-btn {
     padding: 10px 14px;
     font-size: 0.92rem;
 }
 
+/* LAYOUT A DUE COLONNE */
+/* Griglia a due colonne per layout affiancati */
 .grid-two {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 24px;
 }
 
+/* FORM E INPUT */
+/* Container del form */
 .form-box {
     display: flex;
     flex-direction: column;
     gap: 12px;
 }
 
+/* Etichette dei campi form */
 .form-box label {
     font-weight: 700;
     color: #f8fafc;
 }
 
+/* Input e select del form */
 .form-box input,
 .form-box select {
     padding: 12px 14px;
@@ -241,12 +282,15 @@ body {
     outline: none;
 }
 
+/* Stato focus degli input */
 .form-box input:focus,
 .form-box select:focus {
     border-color: #38bdf8;
     box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.12);
 }
 
+/* IMMAGINI E GALLERIA */
+/* Immagine di anteprima del frattale */
 .preview-image {
     width: 100%;
     border-radius: 16px;
@@ -255,6 +299,8 @@ body {
     border: 1px solid rgba(148, 163, 184, 0.12);
 }
 
+/* GALLERIA DELLE IMMAGINI */
+/* Griglia responsive della galleria */
 .gallery {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
@@ -262,6 +308,7 @@ body {
     margin-top: 6px;
 }
 
+/* Card singola della galleria */
 .gallery-card {
     background: rgba(10, 15, 28, 0.9);
     border: 1px solid rgba(148, 163, 184, 0.14);
@@ -271,11 +318,13 @@ body {
     transition: transform 0.2s ease, border-color 0.2s ease;
 }
 
+/* Effetto hover delle card della galleria */
 .gallery-card:hover {
     transform: translateY(-3px);
     border-color: rgba(56, 189, 248, 0.3);
 }
 
+/* Immagini nella galleria */
 .gallery-card img {
     width: 100%;
     border-radius: 12px;
@@ -283,11 +332,14 @@ body {
     background: white;
 }
 
+/* Azioni sotto ogni immagine della galleria */
 .gallery-actions {
     display: flex;
     justify-content: center;
 }
 
+/* NOTE E MESSAGGI */
+/* Box delle note informative */
 .note {
     margin-top: 18px;
     padding: 16px;
@@ -300,6 +352,7 @@ body {
     padding-left: 18px;
 }
 
+/* Box degli errori */
 .error-box {
     margin-top: 18px;
     padding: 14px;
@@ -309,6 +362,8 @@ body {
     border-radius: 14px;
 }
 
+/* FORMULE MATEMATICHE */
+/* Stile per le formule matematiche */
 .formula {
     font-size: 1.2rem;
     font-weight: bold;
@@ -320,28 +375,35 @@ body {
     margin: 10px 0 16px 0;
 }
 
+/* DESIGN RESPONSIVE (MOBILE) */
 @media (max-width: 980px) {
+    /* Navigazione verticale su mobile */
     .nav-wrap {
         flex-direction: column;
         align-items: flex-start;
         padding: 16px 0;
     }
 
+    /* Link di navigazione che vanno a capo */
     .nav-links {
         flex-wrap: wrap;
     }
 
+    /* Griglie che diventano una colonna su mobile */
     .hero-grid,
     .info-grid,
     .grid-two {
         grid-template-columns: 1fr;
     }
 
+    /* Titolo hero più piccolo su mobile */
     .hero h2 {
         font-size: 1.8rem;
     }
 }
 
+/* ultime cose */
+/* Blocco di campo per form */
 .field-block {
     display: flex;
     flex-direction: column;
