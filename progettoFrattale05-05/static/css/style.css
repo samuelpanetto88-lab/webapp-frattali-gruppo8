@@ -5,12 +5,12 @@ body{
     min-height:100vh;
     display:flex;
     flex-direction:column;
-    background:red;
-    color:white;
+    background:white;
+    color:black;
 }
 
 h1{text-align:center;margin-top:20px}
-p{text-align:center;color:rgba(255,255,255,0.7)}
+p{text-align:center;color:#1a162d(255,255,255,0.7)}
 
 nav{
     display:flex;
@@ -29,7 +29,7 @@ nav a{
 }
 
 nav a:hover{
-    color:#a78bfa;
+    color:black;
 }
 
 main{
@@ -67,7 +67,7 @@ main{
 }
 
 .colonna-form{
-    background:rgba(255,255,255,0.05);
+    background:whitesmoke;
     padding:20px;
     border-radius:10px;
     min-width:250px;
@@ -102,7 +102,7 @@ button{
 
 .info{
     font-size:12px;
-    color:rgba(255,255,255,0.5);
+    color:black;
 }
 
 .griglia-vuota{
@@ -129,7 +129,7 @@ img{max-width:100%;border-radius:10px}
 }
 
 .card-frattale{
-    background:none;
+    background:whitesmoke;
     border:1px solid rgba(255,255,255,0.1);
     padding:20px;
     border-radius:15px;
@@ -152,7 +152,7 @@ img{max-width:100%;border-radius:10px}
 }
 
 .card-frattale h3{
-    color:#a78bfa;
+    color: mediumslateblue;
     margin-bottom:10px;
 }
 
@@ -162,7 +162,7 @@ img{max-width:100%;border-radius:10px}
 }
 
 .card-grigio{
-    background-color: #e0d8ff;
+    background-color: whitesmoke;
     padding: 20px;
     border-radius: 12px;
     display: flex;
@@ -178,7 +178,7 @@ img{max-width:100%;border-radius:10px}
 
 .sezione-testo{
     max-width:700px;
-    background:rgba(255,255,255,0.05);
+    background:whitesmoke;
     padding:20px;
     border-radius:12px;
     margin-top:30px;
@@ -212,7 +212,7 @@ img{max-width:100%;border-radius:10px}
 
 .formula{
     display:inline-block;
-    background:#1a162d;
+    background:yellow;
     padding:10px 20px;
     border-radius:8px;
     margin:10px 0;
@@ -231,7 +231,7 @@ img{max-width:100%;border-radius:10px}
 }
 
 .caratteristiche span{
-    background:#2a1f4d;
+    background:whitesmoke;
     padding:5px 10px;
     border-radius:20px;
     font-size:0.8rem;
@@ -259,7 +259,7 @@ img{max-width:100%;border-radius:10px}
 }
 
 footer{
-    background:#0a0815;
+    background: whitesmoke;
     padding:20px;
     margin-top:auto;
     text-align:center;
@@ -321,4 +321,8 @@ footer{
   border-radius: 8px;
   border: 0px solid mediumslateblue;
   background: black;
+}
+
+.card-griglia-p {
+text-align:center;color:#1a162d;
 }
