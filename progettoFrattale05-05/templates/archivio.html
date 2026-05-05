@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}Archivio{% endblock %}
+
+{% block content %}
+<main>
+
+<h1>Archivio</h1>
+<p>Frattali generati salvati.</p>
+
+{% if immagini %}
+
+<div class="archivio-griglia">
+
+{% for img in immagini %}
+<div class="archivio-card">
+
+<img src="{{ url_for('static', filename=img) }}">
+
+<p class="archivio-nome">
+{{ img.split('/')[-1] }}
+</p>
+
+<a class="bottone-ovale"
+href="{{ url_for('static', filename=img) }}"
+download>
+Scarica
+</a>
+
+</div>
+{% endfor %}
+
+</div>
+
+{% else %}
+
+<p>Nessuna immagine salvata.</p>
+
+{% endif %}
+
+</main>
+{% endblock %}

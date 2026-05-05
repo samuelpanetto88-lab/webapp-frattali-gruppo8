@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Frattali{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<nav>
+    <a href="{{ url_for('home') }}">HOME</a>
+    <a href="{{ url_for('frattale') }}">SIERPINSKI</a>
+    <a href="{{ url_for('generatore') }}">GENERATORE</a>
+    <a href="{{ url_for('archivio') }}">ARCHIVIO</a>
+</nav>
+
+{% block content %}{% endblock %}
+
+<footer>
+    <div class="footer-contenuto">
+        <div class="footer-titolo">
+            <h3>Generatore di Frattali</h3>
+            <p>Progetto scolastico</p>
+        </div>
+
+        <div class="footer-team">
+            <div class="footer-card">
+                <div class="footer-avatar">SP</div>
+                <h4>Samuel Panetto</h4>
+                <p>Backend</p>
+            </div>
+
+            <div class="footer-card">
+                <div class="footer-avatar">GR</div>
+                <h4>Gioia Riccardo</h4>
+                <p>Python</p>
+            </div>
+
+            <div class="footer-card">
+                <div class="footer-avatar">LS</div>
+                <h4>Lorenzo Stagno</h4>
+                <p>Frontend</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>

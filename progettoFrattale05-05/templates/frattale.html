@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %}Sierpinski{% endblock %}
+
+{% block content %}
+<main>
+
+<h1>Triangolo di Sierpinski</h1>
+<p>Uno dei frattali più conosciuti.</p>
+
+<div class="layout-sierpinski">
+    <div class="card-grigio">
+        <img src="{{ url_for('static', filename='triangolo.png') }}">
+    </div>
+
+    <div class="testo">
+        <h2>Come si genera</h2>
+
+        <h3>Metodo tradizionale (Sierpinski)</h3>
+        <ul>
+            <li>Si parte da un triangolo equilatero</li>
+            <li>Si rimuove il triangolo centrale</li>
+            <li>Si ripete il processo sui tre triangoli rimanenti</li>
+        </ul>
+
+        <h3>Chaos Game</h3>
+        <p>
+            Si usa un punto casuale che si avvicina ai vertici scegliendoli casualmente ad ogni passo.
+        </p>
+    </div>
+</div>
+
+<div class="sezione-testo">
+    <h2>Formula</h2>
+
+    <p class="formula">
+        P(n+1) = (1 − r) · P(n) + r · V
+    </p>
+
+    <p>
+        P è il punto attuale, V è il vertice scelto.
+        r = 0.5 genera il Sierpinski classico.
+    </p>
+</div>
+
+</main>
+{% endblock %}

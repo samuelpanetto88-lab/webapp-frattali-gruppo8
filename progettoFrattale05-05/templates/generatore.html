@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% block title %}Generatore{% endblock %}
+
+{% block content %}
+<main>
+
+<h1>Generatore di frattali</h1>
+<p>Inserisci i parametri e genera l’immagine.</p>
+
+<div class="layout">
+
+<div class="colonna-form">
+<form method="POST">
+
+<label>Numero vertici</label>
+<p class="info">3 - 12</p>
+<input type="text" name="num_vertici" value="5">
+
+<label>Rapporto r</label>
+<p class="info">0.10 - 0.90</p>
+<input type="text" name="distanza" value="0.5">
+
+<label>Iterazioni</label>
+<p class="info">consigliato 30000+</p>
+<input type="text" name="iterazioni" value="30000">
+
+<label>Colore</label>
+<select name="colore">
+<option>green</option>
+<option>blue</option>
+<option>red</option>
+<option>purple</option>
+<option value="black">nero</option>
+</select>
+
+<button type="submit">Genera</button>
+
+</form>
+</div>
+
+<div class="colonna-frattale">
+
+{% if immagine %}
+
+<div class="risultato-info">
+<h2>Frattale generato</h2>
+
+<div class="caratteristiche">
+<span>{{ request.form.num_vertici }} vertici</span>
+<span>r = {{ request.form.distanza }}</span>
+<span>{{ request.form.iterazioni }} iterazioni</span>
+</div>
+</div>
+
+<img src="{{ url_for('static', filename=immagine) }}">
+
+<a class="bottone-ovale" href="{{ url_for('static', filename=immagine) }}" download>
+Scarica PNG
+</a>
+
+{% else %}
+
+<div class="griglia-vuota">
+<span class="griglia-testo">anteprima frattale</span>
+</div>
+
+{% endif %}
+
+</div>
+
+</div>
+
+</main>
+{% endblock %}
