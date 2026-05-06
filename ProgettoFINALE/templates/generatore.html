@@ -1,0 +1,123 @@
+<!-- Samuel Panetto, Riccardo Gioia, Lorenzo Stagno - 4C INFO Sierpinski -->
+
+{% extends "base.html" %}
+{% block title %}Generatore{% endblock %}
+
+{% block content %}
+<main>
+
+    <!-- Titolo della pagina e introduzione rapida -->
+    <h1>Generatore di frattali</h1>
+    <p>Inserisci i parametri e genera l'immagine.</p>
+
+    <!-- Layout principale diviso in due colonne: form a sinistra e risultato a destra -->
+    <div class="layout">
+
+        <!-- Colonna di sinistra: contiene tutti i campi che l'utente può compilare -->
+        <div class="colonna-form">
+            <form method="POST">
+
+                <!-- Campo per scegliere quanti angoli avrà la figura principale -->
+                <label>Numero vertici</label>
+                <p class="info">min 3 · max 12</p>
+                <input type="number" name="num_vertici" min="3" max="12"
+                       value="{{ request.form.get('num_vertici', 5) }}" required>
+
+                <!-- Campo per il rapporto r: decide quanto "salta" il punto verso i vertici -->
+                <label>Rapporto r</label>
+                <p class="info">min 0.10 · max 0.90</p>
+                <input type="number" step="0.01" min="0.10" max="0.90"
+                       name="distanza"
+                       value="{{ request.form.get('distanza', '0.50') }}" required>
+
+                <!-- Campo per le iterazioni: più punti mettiamo, più il disegno è nitido -->
+                <label>Iterazioni</label>
+                <p class="info">min 1000 · max 1000000 · consigliato: 50000–150000</p>
+                <input type="number" min="1000" max="1000000" step="1000"
+                       name="iterazioni"
+                       value="{{ request.form.get('iterazioni', 50000) }}" required>
+
+                <!-- Menu a tendina per selezionare il colore dei puntini -->
+                <label>Colore</label>
+                <select name="colore">
+                    <option value="green" {% if request.form.get('colore')=='green' %}selected{% endif %}>Verde</option>
+                    <option value="blue" {% if request.form.get('colore')=='blue' %}selected{% endif %}>Blu</option>
+                    <option value="red" {% if request.form.get('colore')=='red' %}selected{% endif %}>Rosso</option>
+                    <option value="purple" {% if request.form.get('colore')=='purple' %}selected{% endif %}>Viola</option>
+                    <option value="black" {% if request.form.get('colore')=='black' %}selected{% endif %}>Nero</option>
+                </select>
+
+                <!-- Tasto che invia i dati al server Python per iniziare il calcolo -->
+                <button type="submit">Genera</button>
+
+            </form>
+
+            <!-- Box informativo con i suggerimenti matematici per non sbagliare i disegni -->
+            <div class="nota-esempi">
+                <p><strong>Valori guida per forme pulite:</strong></p>
+                <ul>
+                    <li>3 vertici → r = 0.50 (Sierpinski)</li>
+                    <li>4 vertici → r = 0.40 (per vedere i vuoti)</li>
+                    <li>5 vertici → r ≈ 0.62</li>
+                    <li>6 vertici → r ≈ 0.66</li>
+                    <li>7 vertici → r ≈ 0.69 (Ettagono)</li>
+                    <li>8 vertici → r ≈ 0.71</li>
+                    <li>10+ vertici → r ≈ 0.75 - 0.85</li>
+                </ul>
+
+                <p style="margin-top:10px;">
+                    ✔ <strong>r corretto</strong> → vedi la forma geometrica<br>
+                    ✖ <strong>r troppo basso</strong> → i punti si ammassano al centro
+                </p>
+            </div>
+
+            <!-- Se il server ci manda un errore (es. dati non validi), lo mostriamo qui -->
+            {% if errore %}
+                <div class="errore">
+                    Errore: {{ errore }}
+                </div>
+            {% endif %}
+
+        </div>
+
+        <!-- Colonna di destra: qui compare l'immagine una volta che il server ha finito -->
+        <div class="colonna-frattale">
+
+            {% if immagine %}
+
+                <!-- Se l'immagine esiste, mostriamo un piccolo riassunto dei dati usati -->
+                <div class="risultato-info">
+                    <h2>Frattale generato</h2>
+
+                    <div class="caratteristiche">
+                        <span>{{ request.form.get('num_vertici') }} vertici</span>
+                        <span>r = {{ request.form.get('distanza') }}</span>
+                        <span>{{ request.form.get('iterazioni') }} iterazioni</span>
+                    </div>
+                </div>
+
+                <!-- Caricamento effettivo del file PNG generato dal server -->
+                <img src="{{ url_for('static', filename=immagine) }}">
+
+                <!-- Tasto per scaricare l'immagine sul proprio computer -->
+                <a class="bottone-ovale"
+                   href="{{ url_for('static', filename=immagine) }}"
+                   download>
+                    Scarica PNG
+                </a>
+
+            {% else %}
+
+                <!-- Se l'utente non ha ancora cliccato nulla, mostriamo un rettangolo vuoto -->
+                <div class="griglia-vuota">
+                    <span class="griglia-testo">anteprima frattale</span>
+                </div>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</main>
+{% endblock %}

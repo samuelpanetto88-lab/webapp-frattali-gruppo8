@@ -1,0 +1,64 @@
+<!-- Samuel Panetto, Riccardo Gioia, Lorenzo Stagno - 4C INFO Sierpinski -->
+
+{% extends "base.html" %}
+{% block title %}Archivio{% endblock %}
+
+{% block content %}
+<main>
+
+    <!-- Titolo della pagina dove raccogliamo tutti i lavori fatti -->
+    <h1>Archivio</h1>
+    <p>Frattali generati salvati.</p>
+
+    <!-- Controlliamo se ci sono effettivamente delle immagini salvate nella cartella -->
+    {% if immagini %}
+
+    <!-- Creiamo una griglia per mostrare i frattali uno di fianco all'altro in modo ordinato -->
+    <div class="archivio-griglia">
+
+        <!-- Facciamo partire un ciclo che crea una card per ogni immagine trovata dal server -->
+        {% for img in immagini %}
+        <div class="archivio-card">
+
+            <!-- Carichiamo l'anteprima del frattale salvato -->
+            <img src="{{ url_for('static', filename=img) }}">
+
+            <!-- Puliamo il nome del file per farlo leggere bene all'utente (senza tutto il percorso delle cartelle) -->
+            <p class="archivio-nome">
+                {{ img.split('/')[-1] }}
+            </p>
+
+            <!-- Box che contiene i comandi per scaricare o cancellare l'immagine -->
+            <div style="display: flex; flex-direction: column; gap: 10px; padding: 0 15px 15px;">
+                
+                <!-- Bottone per scaricare il file PNG sul proprio computer -->
+                <a class="bottone-ovale"
+                   href="{{ url_for('static', filename=img) }}"
+                   download>
+                   Scarica
+                </a>
+
+                <!-- Bottone per eliminare il file. Usa una funzione in app.py -->
+                <!-- Il confirm serve a chiedere "Sei sicuro?" prima di cancellare per davvero -->
+                <a class="bottone-ovale" 
+                   href="{{ url_for('elimina_frattale', img_path=img) }}"
+                   style="background-color: #e74c3c; border-color: #c0392b;"
+                   onclick="return confirm('Sei sicuro di voler eliminare questa immagine?')">
+                   Elimina
+                </a>
+            </div>
+
+        </div>
+        {% endfor %}
+
+    </div>
+
+    <!-- Se non ci sono immagini, mostriamo un messaggio che avvisa l'utente -->
+    {% else %}
+
+    <p>Nessuna immagine salvata nell'archivio.</p>
+
+    {% endif %}
+
+</main>
+{% endblock %}

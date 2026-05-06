@@ -1,0 +1,62 @@
+<!-- Samuel Panetto, Riccardo Gioia, Lorenzo Stagno - 4C INFO Sierpinski -->
+
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<main style="max-width: 1200px; margin: 0 auto; padding: 20px;">
+
+    <!-- Titolo della Home: è la prima cosa che l'utente vede -->
+    <h1 class="titolo-grande" style="text-align: center; font-size: 3.5rem; margin-bottom: 10px;">Frattali</h1>
+    
+    <!-- Una breve introduzione per spiegare in parole semplici cos'è un frattale -->
+    <p style="text-align: center; max-width: 800px; margin: 0 auto 30px; font-size: 1.1rem; line-height: 1.6; opacity: 0.9;">
+        Un frattale è un oggetto geometrico che si ripete nella sua forma allo stesso modo su scale diverse. 
+        Ingrandendo una qualunque parte della figura, si otterrà una copia ridotta dell'insieme: 
+        questa caratteristica è nota come <strong>autosimiglianza</strong>.
+    </p>
+
+    <!-- Visualizzazione di un'immagine d'impatto nella parte alta della pagina -->
+    <div style="text-align: center; margin-bottom: 50px;">
+        <img src="{{ url_for('static', filename='frattali.png') }}" 
+             alt="Esempio di Frattale" 
+             style="width: 100%; max-width: 900px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+    </div>
+
+    <!-- Sezione con tre card che fanno da menu per navigare nelle varie parti del sito -->
+    <div class="card-griglia" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 50px;">
+
+        <!-- Card 1: Spiega a cosa serve il generatore e rimanda alla pagina di creazione -->
+        <a href="{{ url_for('generatore') }}" class="card-frattale" style="text-decoration: none; color: inherit;">
+            <div class="card-icona" style="font-size: 2rem; margin-bottom: 15px;">⚙️</div>
+            <h3>Guida Generatore</h3>
+            <p style="font-size: 0.9rem; line-height: 1.5;">
+                Scopri come utilizzare il nostro algoritmo. Regolando il numero di vertici e il rapporto di salto, 
+                potrai creare infinite combinazioni geometriche e sperimentare con la matematica del caos.
+            </p>
+        </a>
+
+        <!-- Card 2: Rimanda alla pagina specifica sulla teoria del triangolo di Sierpinski -->
+        <a href="{{ url_for('frattale') }}" class="card-frattale" style="text-decoration: none; color: inherit;">
+            <div class="card-icona" style="font-size: 2rem; margin-bottom: 15px;">🎲</div>
+            <h3>Il nostro Frattale</h3>
+            <p style="font-size: 0.9rem; line-height: 1.5;">
+                Analizziamo nel dettaglio il Triangolo di Sierpinski. Qui troverai la spiegazione passo dopo passo 
+                di come la teoria matematica si trasforma in codice attraverso il metodo del Chaos Game.
+            </p>
+        </a>
+
+        <!-- Card 3: Rimanda all'archivio per vedere e gestire le immagini già salvate -->
+        <a href="{{ url_for('archivio') }}" class="card-frattale" style="text-decoration: none; color: inherit;">
+            <div class="card-icona" style="font-size: 2rem; margin-bottom: 15px;">📁</div>
+            <h3>Archivio Creazioni</h3>
+            <p style="font-size: 0.9rem; line-height: 1.5;">
+                Esplora la galleria di tutte le immagini generate fino ad ora. In questa sezione potrai 
+                riguardare i tuoi lavori, scaricarli in alta definizione o eliminare quelli che non ti servono più.
+            </p>
+        </a>
+
+    </div>
+
+</main>
+{% endblock %}

@@ -1,0 +1,89 @@
+<!-- Samuel Panetto, Riccardo Gioia, Lorenzo Stagno - 4C INFO Sierpinski -->
+
+{% extends "base.html" %}
+{% block title %}Sierpinski{% endblock %}
+
+{% block content %}
+<main style="max-width: 1100px; margin: 0 auto; padding: 20px;">
+
+    <!-- Titolo principale della pagina di spiegazione -->
+    <h1 style="text-align: center; margin-bottom: 30px;">Triangolo di Sierpinski</h1>
+    
+    <!-- Sezione con l'immagine che mostra come cresce il triangolo passaggio dopo passaggio -->
+    <div style="text-align: center; margin-bottom: 40px;">
+        <img src="{{ url_for('static', filename='fasiT.jpg') }}" 
+             alt="Fasi evolutive Sierpinski" 
+             style="width: 100%; max-width: 900px; height: auto; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
+    </div>
+
+    <!-- Primo blocco: Confronto tra il metodo geometrico e quello programmato da noi -->
+    <div class="sezione-testo" style="width: 100%; background: rgba(255,255,255,0.05); padding: 30px; border-radius: 12px; margin-bottom: 30px;">
+        <h2 style="border-bottom: 1px solid #444; padding-bottom: 10px;">Come si genera</h2>
+        
+        <div style="display: flex; gap: 40px; margin-top: 20px;">
+            <!-- Spiegazione di come si farebbe a mano con carta e penna -->
+            <div style="flex: 1;">
+                <h3 style="color: #00d4ff;">Metodo Tradizionale</h3>
+                <p>La costruzione segue una logica di sottrazione geometrica:</p>
+                <ol style="line-height: 1.8;">
+                    <li><strong>1.</strong> Si parte da un <strong>triangolo equilatero</strong> iniziale.</li>
+                    <li><strong>2.</strong> Si individuano i <strong>punti medi</strong> di ogni lato.</li>
+                    <li><strong>3.</strong> Si rimuove il <strong>triangolo centrale</strong> che si è formato.</li>
+                    <li><strong>4.</strong> Si ripete lo stesso lavoro per i triangoli rimasti, <strong>all'infinito</strong>.</li>
+                </ol>
+            </div>
+            
+            <!-- Spiegazione di come lo abbiamo implementato nel codice Python -->
+            <div style="flex: 1;">
+                <h3 style="color: #00c853;">Implementazione Chaos Game</h3>
+                <p>Il nostro codice crea la figura partendo dal disordine:</p>
+                <ol type="a" style="line-height: 1.8;">
+                    <li><strong>a.</strong> Si piazza un <strong>punto a caso</strong> nel piano.</li>
+                    <li><strong>b.</strong> Si sceglie uno dei <strong>tre vertici</strong> del triangolo tirando a sorte.</li>
+                    <li><strong>c.</strong> Si muove il punto verso quel vertice di una <strong>distanza precisa</strong>.</li>
+                    <li><strong>d.</strong> Si segna la <strong>nuova posizione</strong> e si ricomincia per milioni di volte.</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+    <!-- Secondo blocco: Spiegazione della matematica che sta dietro ai calcoli del computer -->
+    <div class="sezione-testo" style="width: 100%; background: rgba(255,255,255,0.05); padding: 30px; border-radius: 12px;">
+        <h2 style="border-bottom: 1px solid #444; padding-bottom: 10px;">La Formula Matematica</h2>
+        
+        <!-- Box nero con la formula colorata per renderla più leggibile -->
+        <div style="background: #000; padding: 20px; border-radius: 10px; text-align: center; margin: 25px 0; font-family: 'Courier New', monospace; font-size: 1.4rem; border: 1px solid #333;">
+            <span style="color: #00d4ff;">P<sub>n+1</sub></span> = (1 - <span style="color: #ff4081;">r</span>) · <span style="color: #00d4ff;">P<sub>n</sub></span> + <span style="color: #ff4081;">r</span> · <span style="color: #00c853;">V</span>
+        </div>
+
+        <!-- Legenda che spiega cosa sono le singole lettere della formula -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 30px;">
+            <div>
+                <p><strong style="color: #00d4ff;">P<sub>n</sub></strong>: Punto attuale.</p>
+                <p><strong style="color: #00c853;">V</strong>: Vertice scelto.</p>
+            </div>
+            <div>
+                <p><strong style="color: #ff4081;">r</strong>: Rapporto di salto.</p>
+                <p><strong style="color: #00d4ff;">P<sub>n+1</sub></strong>: Punto successivo.</p>
+            </div>
+        </div>
+
+        <!-- Spiegazione "terra-terra" di come lavora il calcolo -->
+        <h3 style="border-top: 1px solid #444; padding-top: 20px;">Come funziona la formula?</h3>
+        <p style="line-height: 1.6;">
+            In termini semplici, questa formula serve a calcolare la <strong>posizione esatta</strong> del punto passaggio dopo passaggio. Il parametro <strong>r</strong> è fondamentale: ci dice quanto il punto deve "saltare" verso l'angolo del triangolo scelto.
+        </p>
+        <p style="line-height: 1.6;">
+            Se impostiamo <strong>r = 0.5</strong>, il punto finirà esattamente a <strong>metà strada</strong> tra la sua posizione vecchia e il vertice. Ripetendo questo calcolo milioni di volte, i punti smettono di muoversi a caso e iniziano a disporsi lungo i bordi e i dettagli del frattale. È proprio questo movimento ripetuto che trasforma il caos iniziale nella <strong>forma geometrica perfetta</strong> che vedi nel generatore.
+        </p>
+    </div>
+
+    <!-- Bottone finale per invitare l'utente a provare il generatore -->
+    <div style="text-align: center; margin: 40px 0;">
+        <a href="{{ url_for('generatore') }}" class="bottone-ovale" style="padding: 15px 40px; font-size: 1.1rem; background: #6200ea; color: white; text-decoration: none; border-radius: 30px;">
+            Vai al generatore
+        </a>
+    </div>
+
+</main>
+{% endblock %}
